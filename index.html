@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telingaku Mendengar Nasihat - Kelas 1 SD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f9ff;
+            background-image: radial-gradient(#bae6fd 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .input-anak {
+            border: 3px solid #cbd5e1;
+            transition: all 0.3s;
+        }
+        .input-anak:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            transform: scale(1.02);
+        }
+        .btn-bubbly {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-bubbly:active {
+            transform: scale(0.95);
+        }
+        .btn-bubbly:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
+
+    <main class="w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col relative h-[90vh] md:h-[80vh]">
+        
+        <!-- Header / Progress Bar -->
+        <header class="bg-blue-500 text-white p-4 text-center font-bold text-xl relative z-10 flex justify-between items-center shadow-md">
+            <span>Pelajaran Agama Kristen ⛪</span>
+            <span id="progress-text" class="text-sm bg-blue-700 px-3 py-1 rounded-full">Halo! 👋</span>
+        </header>
+
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-6 md:p-8 relative" id="slide-container">
+            
+            <div id="slide-0" class="slide active flex-col items-center justify-center h-full text-center space-y-6">
+                <div class="text-6xl mb-4">👂✨</div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-blue-600 leading-tight">Telingaku <br> Mendengar Nasihat</h1>
+                <p class="text-lg md:text-xl text-gray-600 font-semibold">Bahan Alkitab: 1 Samuel 3: 1-10; Amsal 12: 15b</p>
+                
+                <div class="mt-6 w-full max-w-xs md:max-w-sm">
+                    <label for="nama-siswa" class="block text-lg font-bold text-gray-700 mb-2">Siapa namamu?</label>
+                    <input type="text" id="nama-siswa" oninput="saveName(this.value)" placeholder="Ketik namamu di sini ya..." class="input-anak w-full text-center text-xl p-3 rounded-2xl bg-white border-4 border-blue-200 focus:border-blue-500 mb-4 shadow-sm">
+                </div>
+
+                <button onclick="nextSlide()" class="btn-bubbly bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded-full shadow-[0_6px_0_#16a34a] active:shadow-[0_0px_0_#16a34a] active:translate-y-[6px]">
+                    Mulai Belajar! 🚀
+                </button>
+            </div>
+
+            <div id="slide-1" class="slide flex-col space-y-6">
+                <div class="inline-block bg-yellow-300 text-yellow-800 px-4 py-1 rounded-full font-bold text-sm mb-2 w-max">Mari Menjawab 🤔</div>
+                
+                <div class="space-y-3">
+                    <label class="block text-xl font-bold text-gray-800">1. Berapakah jumlah telinga kita?</label>
+                    <input type="text" id="q-awal-1" oninput="saveAnswer('awal1', this.value)" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50">
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-xl font-bold text-gray-800">2. Apakah guna telinga?</label>
+                    <textarea id="q-awal-2" oninput="saveAnswer('awal2', this.value)" rows="2" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50"></textarea>
+                </div>
+            </div>
+
+            <div id="slide-2" class="slide flex-col space-y-6">
+                <div class="inline-block bg-yellow-300 text-yellow-800 px-4 py-1 rounded-full font-bold text-sm mb-2 w-max">Lanjut Menjawab ✍️</div>
+                
+                <div class="space-y-3">
+                    <label class="block text-xl font-bold text-gray-800">3. Siapakah yang memberikan telinga pada kita?</label>
+                    <input type="text" id="q-awal-3" oninput="saveAnswer('awal3', this.value)" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50">
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-xl font-bold text-gray-800">4. Bagaimanakah kita harus menggunakan telinga?</label>
+                    <textarea id="q-awal-4" oninput="saveAnswer('awal4', this.value)" rows="2" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50"></textarea>
+                </div>
+            </div>
+
+            <div id="slide-3" class="slide flex-col items-center justify-center text-center space-y-8 h-full">
+                <div class="text-5xl">📖</div>
+                <h2 class="text-2xl font-bold text-gray-500 uppercase tracking-wider">Ayat Hafalan</h2>
+                <div class="bg-blue-100 p-8 rounded-3xl shadow-inner border-4 border-blue-200">
+                    <p class="text-3xl md:text-4xl font-extrabold text-blue-800 leading-snug">"Siapa mendengarkan nasihat, ia bijak"</p>
+                </div>
+                <p class="text-xl font-bold text-gray-600 bg-gray-200 px-6 py-2 rounded-full">Amsal 12: 15b</p>
+                <p class="text-gray-500 animate-pulse">Yuk, dibaca bersama-sama! 🗣️</p>
+            </div>
+
+            <div id="slide-4" class="slide flex-col space-y-4 h-full">
+                <h2 class="text-2xl font-bold text-blue-700 text-center flex items-center justify-center gap-2">
+                    <span>🎬</span> Kisah Panggilan Samuel
+                </h2>
+                <p class="text-center text-gray-600 mb-2">Ayo tonton video ini dengan saksama ya!</p>
+                <div class="relative w-full overflow-hidden rounded-2xl shadow-lg border-4 border-gray-200" style="padding-top: 56.25%;">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/D559krmdJ8w?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <a href="https://youtu.be/D559krmdJ8w?si=r7KtGO0h_puzz3C4" target="_blank" class="text-center text-sm font-bold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-3 rounded-xl mt-2 transition-colors flex items-center justify-center gap-2 border border-red-200">
+                    <span>⚠️</span> Jika video tidak bisa diputar, klik di sini
+                </a>
+            </div>
+
+            <div id="slide-5" class="slide flex-col space-y-6">
+                <div class="inline-block bg-purple-200 text-purple-800 px-4 py-1 rounded-full font-bold text-sm mb-2 w-max">Tanya Jawab Video 📺</div>
+                
+                <div class="space-y-3">
+                    <label class="block text-lg font-bold text-gray-800">1. Siapa yang membimbing Samuel menjadi pelayan yang baik dan setia?</label>
+                    <input type="text" id="q-samuel-1" oninput="saveAnswer('samuel1', this.value)" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50">
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-lg font-bold text-gray-800">2. Siapakah yang memanggil Samuel saat ia tidur?</label>
+                    <input type="text" id="q-samuel-2" oninput="saveAnswer('samuel2', this.value)" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50">
+                </div>
+            </div>
+
+            <div id="slide-6" class="slide flex-col space-y-6">
+                <div class="inline-block bg-purple-200 text-purple-800 px-4 py-1 rounded-full font-bold text-sm mb-2 w-max">Sedikit Lagi Selesai! 🌟</div>
+                
+                <div class="space-y-3">
+                    <label class="block text-lg font-bold text-gray-800">3. Bagaimanakah Samuel mendengar suara Tuhan?</label>
+                    <textarea id="q-samuel-3" oninput="saveAnswer('samuel3', this.value)" rows="2" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50"></textarea>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-lg font-bold text-gray-800">4. Bagaimanakah Samuel menggunakan telinganya?</label>
+                    <textarea id="q-samuel-4" oninput="saveAnswer('samuel4', this.value)" rows="2" placeholder="Tulis jawabanmu di sini..." class="input-anak w-full text-lg p-4 rounded-2xl bg-gray-50"></textarea>
+                </div>
+            </div>
+
+            <div id="slide-7" class="slide flex-col">
+                <div class="bg-green-100 border-l-4 border-green-500 p-4 mb-6 rounded-r-xl">
+                    <h2 class="text-xl font-bold text-green-800 flex items-center gap-2"><span>📸</span> Waktunya Screenshot!</h2>
+                    <p class="text-green-700 mt-1">Minta tolong Papa/Mama untuk screenshot halaman ini dan kirim ke Google Classroom ya.</p>
+                </div>
+
+                <div class="bg-white border-2 border-dashed border-gray-300 rounded-2xl p-4 md:p-6 shadow-sm space-y-6" id="summary-content">
+                    <!-- Konten rangkuman akan diisi oleh JavaScript -->
+                </div>
+                <div class="text-center mt-6 text-gray-400 font-bold text-lg">
+                    Hebat! Kamu sudah menyelesaikan pelajaran hari ini. 🎉
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="bg-gray-50 border-t border-gray-200 p-4 flex justify-between items-center" id="navigation">
+            <button onclick="prevSlide()" id="btn-prev" class="btn-bubbly bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_0_#c2410c] active:shadow-[0_0px_0_#c2410c] active:translate-y-[4px] hidden">
+                ⬅️ Kembali
+            </button>
+            <div class="flex-1"></div> <!-- Spacer -->
+            <button onclick="nextSlide()" id="btn-next" class="btn-bubbly bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-[0_4px_0_#1d4ed8] active:shadow-[0_0px_0_#1d4ed8] active:translate-y-[4px]">
+                Lanjut ➡️
+            </button>
+        </footer>
+    </main>
+
+    <script>
+        // State management
+        let currentSlide = 0;
+        const totalSlides = 8;
+        let studentName = "";
+        
+        // Objek untuk menyimpan jawaban siswa
+        const answers = {
+            awal1: "", awal2: "", awal3: "", awal4: "",
+            samuel1: "", samuel2: "", samuel3: "", samuel4: ""
+        };
+
+        // Data pertanyaan untuk rangkuman
+        const questions = {
+            awal1: "1. Berapakah jumlah telinga kita?",
+            awal2: "2. Apakah guna telinga?",
+            awal3: "3. Siapakah yang memberikan telinga pada kita?",
+            awal4: "4. Bagaimanakah kita harus menggunakan telinga?",
+            samuel1: "1. Siapa yang membimbing Samuel?",
+            samuel2: "2. Siapakah yang memanggil Samuel saat tidur?",
+            samuel3: "3. Bagaimanakah Samuel mendengar suara Tuhan?",
+            samuel4: "4. Bagaimanakah Samuel menggunakan telinganya?"
+        };
+
+        // Menyimpan jawaban saat diketik
+        function saveAnswer(key, value) {
+            answers[key] = value;
+        }
+
+        // Menyimpan nama siswa
+        function saveName(value) {
+            studentName = value;
+        }
+
+        // Memperbarui tampilan UI berdasarkan slide saat ini
+        function updateUI() {
+            // Sembunyikan semua slide
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Tampilkan slide saat ini
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+
+            // Atur tombol navigasi
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const nav = document.getElementById('navigation');
+            const progressText = document.getElementById('progress-text');
+
+            if (currentSlide === 0) {
+                nav.classList.add('hidden'); // Sembunyikan navbar di halaman judul
+                progressText.innerText = "Halo! 👋";
+            } else {
+                nav.classList.remove('hidden');
+                btnPrev.classList.toggle('hidden', currentSlide === 0);
+                
+                if (currentSlide === totalSlides - 1) {
+                    btnNext.classList.add('hidden'); // Sembunyikan 'Lanjut' di halaman akhir
+                    progressText.innerText = "Selesai! 🌟";
+                    generateSummary(); // Buat rangkuman saat mencapai halaman akhir
+                } else {
+                    btnNext.classList.remove('hidden');
+                    progressText.innerText = `Halaman ${currentSlide} dari ${totalSlides - 1}`;
+                }
+            }
+
+            // Scroll konten ke atas setiap ganti slide
+            document.getElementById('slide-container').scrollTop = 0;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateUI();
+            }
+        }
+
+        // Menghasilkan HTML untuk halaman rangkuman
+        function generateSummary() {
+            const summaryContainer = document.getElementById('summary-content');
+            
+            // Menyiapkan nama untuk ditampilkan
+            const displayName = studentName.trim() === "" ? "<span class='text-red-500'>Belum diisi</span>" : studentName;
+
+            let html = `
+                <div class="text-center border-b-4 border-blue-100 pb-4 mb-4">
+                    <h3 class="text-2xl font-extrabold text-blue-600 uppercase tracking-wide">Hasil Belajarku</h3>
+                    <div class="mt-3 inline-block bg-blue-50 px-6 py-2 rounded-full border border-blue-200">
+                        <p class="text-gray-600 font-bold text-lg">Nama: <span class="text-blue-800 ml-2">${displayName}</span></p>
+                    </div>
+                </div>
+            `;
+
+            // Bagian Assesmen Awal
+            html += `<h4 class="font-bold text-lg text-purple-700 bg-purple-100 p-2 rounded-lg">A. Assesmen Awal</h4><div class="space-y-4 mt-3 mb-6">`;
+            ['awal1', 'awal2', 'awal3', 'awal4'].forEach(key => {
+                html += `
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200">
+                        <p class="font-bold text-gray-700 text-sm mb-1">${questions[key]}</p>
+                        <p class="text-blue-700 font-bold text-lg italic bg-white p-2 rounded border border-blue-100 min-h-[2.5rem]">
+                            ${answers[key] ? answers[key] : '<span class="text-red-400 font-normal text-sm">Belum dijawab</span>'}
+                        </p>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+
+            // Bagian Kisah Samuel
+            html += `<h4 class="font-bold text-lg text-purple-700 bg-purple-100 p-2 rounded-lg">B. Kisah Samuel</h4><div class="space-y-4 mt-3">`;
+            ['samuel1', 'samuel2', 'samuel3', 'samuel4'].forEach(key => {
+                html += `
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200">
+                        <p class="font-bold text-gray-700 text-sm mb-1">${questions[key]}</p>
+                        <p class="text-blue-700 font-bold text-lg italic bg-white p-2 rounded border border-blue-100 min-h-[2.5rem]">
+                            ${answers[key] ? answers[key] : '<span class="text-red-400 font-normal text-sm">Belum dijawab</span>'}
+                        </p>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+
+            summaryContainer.innerHTML = html;
+        }
+
+        // Inisialisasi tampilan pertama
+        updateUI();
+    </script>
+</body>
+</html>
